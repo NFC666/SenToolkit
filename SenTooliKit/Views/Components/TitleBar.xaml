@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="SenTooliKit.Views.Components.TitleBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:SenTooliKit.Views.Components"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+  <Border>
+    <DockPanel
+      LastChildFill="False">
+      <TextBlock
+        x:Name="TextBlock"
+        VerticalAlignment="Center"
+        DockPanel.Dock="Left"
+        FontWeight="Bold"
+        Margin="10,0,0,0" />
+      <Button
+        x:Name="Btn"
+        Click="ButtonBase_OnClick"
+        DockPanel.Dock="Right"
+        Style="{StaticResource MaterialDesignFlatLightButton}">
+        <materialDesign:PackIcon Kind="Close" />
+        
+      </Button>
+      <Button
+        Click="WindowRestore"
+        DockPanel.Dock="Right"
+        Style="{StaticResource MaterialDesignFlatLightButton}">
+        <materialDesign:PackIcon Kind="WindowRestore" />
+      </Button>
+      <Button
+        Click="WindowMinimize"
+        DockPanel.Dock="Right"
+        Style="{StaticResource MaterialDesignFlatLightButton}">
+        <materialDesign:PackIcon Kind="WindowMinimize" />
+      </Button>
+    </DockPanel>
+  </Border>
+</UserControl>

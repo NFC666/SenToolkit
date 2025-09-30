@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+      <TargetFramework>net8.0-windows</TargetFramework>
+      <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\SenTooliKit.Common\SenTooliKit.Common.csproj" />
+      <ProjectReference Include="..\SenTooliKit.IServices\SenTooliKit.IServices.csproj" />
+      <ProjectReference Include="..\SenTooliKit.Repository\SenTooliKit.Repository.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Newtonsoft.Json" />
+      <PackageReference Include="System.Drawing.Common" />
+    </ItemGroup>
+
+</Project>

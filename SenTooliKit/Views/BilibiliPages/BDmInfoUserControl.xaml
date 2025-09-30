@@ -1,0 +1,176 @@
+﻿<UserControl x:Class="SenTooliKit.Views.BilibiliPages.BDmInfoUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:SenTooliKit.ViewModels.BilibiliPages"
+             xmlns:converter="clr-namespace:SenTooliKit.Converter"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             d:DesignHeight="550"
+             d:DesignWidth="900"
+             d:DataContext="{d:DesignInstance Type=vm:BDmInfoUserControlVM, IsDesignTimeCreatable=True}">
+
+  <UserControl.Resources>
+    <converter:PathToImageConverter x:Key="ImageConverter" />
+    <DataTemplate x:Key="VideoPartTemplate">
+      <TextBlock Text="{Binding Label}" />
+    </DataTemplate>
+  </UserControl.Resources>
+
+  <Grid Margin="10">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+
+    <!-- 输入与操作区 -->
+    <StackPanel Orientation="Vertical" Grid.Row="0" Margin="0,0,0,10">
+
+      <!-- 视频链接和日期选择 -->
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="3*" />
+          <ColumnDefinition Width="1*" />
+          <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <TextBox Grid.Column="0"
+                 Text="{Binding Url, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 materialDesign:HintAssist.Hint="输入视频链接"
+                 Style="{StaticResource MaterialDesignFilledTextBox}" />
+
+        <DatePicker Grid.Column="1"
+                    SelectedDate="{Binding Month}"
+                    materialDesign:HintAssist.Hint="选择弹幕月份"
+                    Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+
+        <Button Grid.Column="2"
+                Content="加载分P与时间"
+                Command="{Binding LoadBulletTimesAndCidsCommand}"
+                Margin="10,0,0,0" />
+      </Grid>
+
+      <!-- 错误提示 -->
+      <TextBlock Text="{Binding ErrorText}"
+                 Foreground="Red"
+                 FontWeight="Bold"
+                 TextWrapping="Wrap" />
+
+      <!-- 分P和时间选择 + 加载弹幕 -->
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="2*" />
+          <ColumnDefinition Width="2*" />
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <!-- 分P选择 -->
+        <ComboBox Grid.Column="0"
+                  ItemsSource="{Binding Cids}"
+                  SelectedItem="{Binding SelectedCid}"
+                  ItemTemplate="{StaticResource VideoPartTemplate}"
+                  materialDesign:HintAssist.Hint="选择视频分P"
+                  Style="{StaticResource MaterialDesignComboBox}" />
+
+        <!-- 时间选择 -->
+        <ComboBox Grid.Column="1"
+                  ItemsSource="{Binding BulletTimes}"
+                  SelectedItem="{Binding SelectedTime}"
+                  materialDesign:HintAssist.Hint="选择弹幕时间"
+                  Style="{StaticResource MaterialDesignComboBox}" />
+
+        <Button Grid.Column="2"
+                Content="加载弹幕"
+                Command="{Binding LoadBulletsCommand}"
+                Margin="10,0,0,0" />
+
+        <!-- 下载所有弹幕 -->
+        <Button Grid.Column="3"
+                Content="下载所有弹幕"
+                Command="{Binding DownloadAllDmCommand}"
+                Margin="10,0,0,0" />
+      </Grid>
+
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <TextBox 
+          Text="{Binding Keyword}"
+          materialDesign:HintAssist.Hint="输入关键字搜索特定弹幕"
+          Style="{StaticResource MaterialDesignFilledTextBox}" />
+        <Button
+          Grid.Column="1"
+          Command="{Binding SearchCommand}"
+          VerticalAlignment="Bottom" Content="搜索"/>
+      </Grid>
+      <!-- 下载进度条 -->
+      <ProgressBar Minimum="0"
+                   Maximum="100"
+                   Height="20"
+                   
+                   Value="{Binding Progress}"
+                   Margin="0,5,0,0"
+                   Visibility="{Binding IsLoading
+                   , Converter={StaticResource BooleanToVisibilityConverter}}" />
+    </StackPanel>
+
+    <Grid Grid.Row="1">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+      <!-- 弹幕列表 -->
+      <Grid>
+        <DataGrid
+          SelectedItem="{Binding SelectedBulletInfo}"
+          ItemsSource="{Binding BulletInfos}"
+          AutoGenerateColumns="False"
+          CanUserAddRows="False"
+          CanUserDeleteRows="False"
+          IsReadOnly="True"
+          HorizontalScrollBarVisibility="Auto"
+          VerticalScrollBarVisibility="Auto"
+          Margin="0,10,0,0">
+
+          <DataGrid.Columns>
+            <DataGridTextColumn Header="弹幕ID" Binding="{Binding DmId}" Width="150" />
+            <DataGridTextColumn Header="发送时间" Binding="{Binding SendTime}" Width="200" />
+            <DataGridTextColumn Header="内容" Binding="{Binding DmContent}" Width="*" />
+            <DataGridTextColumn Header="发送者ID" Binding="{Binding SendId}" Width="150" />
+          </DataGrid.Columns>
+          <DataGrid.ContextMenu>
+            <ContextMenu>
+              <MenuItem Header="复制" Command="{Binding CopyCommand}" />
+              <MenuItem Header="获得发送者id" Command="{Binding GetSenderIdCommand}" />
+            </ContextMenu>
+          </DataGrid.ContextMenu>
+        </DataGrid>
+        <ProgressBar
+          BorderBrush="Transparent"
+          Background="Transparent"
+          VerticalAlignment="Bottom"
+          IsIndeterminate="{Binding IsIndeterminate}"/>
+      </Grid>
+      <Border
+        Grid.Row="1"
+        Margin="10"
+        Padding="5"
+        BorderBrush="Gray"
+        Opacity="0.5" 
+        BorderThickness="0,1,0,0">
+        <StackPanel>
+          <TextBlock Text="温馨提示：" FontWeight="Bold" FontSize="15" Foreground="Red"/>
+          <TextBlock Text="1. 上述弹幕均为历史弹幕，非实时弹幕。"/>
+          <TextBlock Text="2. 你可以通过右键唤出菜单，选择复制或者获得发送者id。"/>
+          <TextBlock Text="3. 获得用户id需要较长的时间，且计算的id有极低可能率重复。"/>
+          <TextBlock Text="4. 远古时期的弹幕可能搜索不到。"/>
+          
+        </StackPanel>
+      </Border>
+    </Grid>
+  </Grid>
+</UserControl>

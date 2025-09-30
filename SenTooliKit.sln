@@ -1,0 +1,81 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33103.201
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SenTooliKit", "SenTooliKit\SenTooliKit.csproj", "{5DE76ED2-C96F-4D5B-85FF-5BC9850C11AF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SenTooliKit.Tests", "SenTooliKit.Tests\SenTooliKit.Tests.csproj", "{75C75A76-E608-41BB-AEC2-80A1C95B7B62}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{50AAD861-2EF1-4EAB-80EB-20FECB15232C}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+		Directory.Packages.props = Directory.Packages.props
+		exclusions.dic = exclusions.dic
+		NuGet.config = NuGet.config
+		Settings.XamlStyler = Settings.XamlStyler
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{EF62C430-6899-4C85-BFFC-D71632937A3B}"
+	ProjectSection(SolutionItems) = preProject
+		.github\dependabot.yml = .github\dependabot.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{AC2A502B-963E-4FD6-ACCA-8F96EDD4190F}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build_app.yml = .github\workflows\build_app.yml
+		.github\workflows\code_coverage_comment.yml = .github\workflows\code_coverage_comment.yml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SenTooliKit.Common", "SenTooliKit.Common\SenTooliKit.Common.csproj", "{5031527E-E39B-4D1A-A1CD-802941DF0918}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SenTooliKit.Services", "SenTooliKit.Services\SenTooliKit.Services.csproj", "{4FD19DD3-874D-4ED3-8AB6-2E38C13F9EB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SenTooliKit.Repository", "SenTooliKit.Repository\SenTooliKit.Repository.csproj", "{5B19F08E-6F3F-45D1-BBA7-FF66308A09F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SenTooliKit.IServices", "SenTooliKit.IServices\SenTooliKit.IServices.csproj", "{3B543D93-F8C0-4FD9-B0BB-EF7B69D5F26D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5DE76ED2-C96F-4D5B-85FF-5BC9850C11AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DE76ED2-C96F-4D5B-85FF-5BC9850C11AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DE76ED2-C96F-4D5B-85FF-5BC9850C11AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DE76ED2-C96F-4D5B-85FF-5BC9850C11AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75C75A76-E608-41BB-AEC2-80A1C95B7B62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75C75A76-E608-41BB-AEC2-80A1C95B7B62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75C75A76-E608-41BB-AEC2-80A1C95B7B62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75C75A76-E608-41BB-AEC2-80A1C95B7B62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5031527E-E39B-4D1A-A1CD-802941DF0918}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5031527E-E39B-4D1A-A1CD-802941DF0918}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5031527E-E39B-4D1A-A1CD-802941DF0918}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5031527E-E39B-4D1A-A1CD-802941DF0918}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FD19DD3-874D-4ED3-8AB6-2E38C13F9EB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FD19DD3-874D-4ED3-8AB6-2E38C13F9EB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FD19DD3-874D-4ED3-8AB6-2E38C13F9EB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FD19DD3-874D-4ED3-8AB6-2E38C13F9EB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B19F08E-6F3F-45D1-BBA7-FF66308A09F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B19F08E-6F3F-45D1-BBA7-FF66308A09F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B19F08E-6F3F-45D1-BBA7-FF66308A09F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B19F08E-6F3F-45D1-BBA7-FF66308A09F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B543D93-F8C0-4FD9-B0BB-EF7B69D5F26D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B543D93-F8C0-4FD9-B0BB-EF7B69D5F26D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B543D93-F8C0-4FD9-B0BB-EF7B69D5F26D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B543D93-F8C0-4FD9-B0BB-EF7B69D5F26D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EF62C430-6899-4C85-BFFC-D71632937A3B} = {50AAD861-2EF1-4EAB-80EB-20FECB15232C}
+		{AC2A502B-963E-4FD6-ACCA-8F96EDD4190F} = {EF62C430-6899-4C85-BFFC-D71632937A3B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {490F259C-CD1B-446C-A893-CD94D4954AE9}
+	EndGlobalSection
+EndGlobal

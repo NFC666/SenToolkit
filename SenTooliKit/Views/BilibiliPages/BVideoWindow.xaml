@@ -1,0 +1,106 @@
+﻿<Window x:Class="SenTooliKit.Views.BilibiliPages.BVideoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:SenTooliKit.Views.BilibiliPages"
+        MouseLeftButtonDown="BVideoWindow_OnMouseLeftButtonDown"
+        xmlns:components="clr-namespace:SenTooliKit.Views.Components"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:vm="clr-namespace:SenTooliKit.ViewModels.BilibiliPages"
+        xmlns:behavior="clr-namespace:SenTooliKit.Behavior"
+        d:DataContext="{d:DesignInstance Type=vm:BVideoViewModel,IsDesignTimeCreatable=True}"
+        mc:Ignorable="d"
+        Title="BVideoWindow" Height="600" Width="900">
+  <Border
+    BorderBrush="DarkMagenta"
+    BorderThickness="1"
+    Margin="1">
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="*" />
+      </Grid.RowDefinitions>
+      <components:TitleBar />
+      <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel>
+
+          <TextBlock
+            Opacity="0.4"
+            HorizontalAlignment="Right"
+            Style="{StaticResource MaterialDesignBodySmallTextBlock}">
+            ——那时叫做JiJi
+          </TextBlock>
+          <Grid Width="600">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="Auto" />
+
+            </Grid.ColumnDefinitions>
+            <TextBox
+              Text="{Binding VideoUrl}"
+              x:Name="Tb"
+              VerticalAlignment="Center"
+              materialDesign:HintAssist.Hint="视频链接"
+              Style="{StaticResource MaterialDesignFilledTextBox}" />
+            <Button
+              Command="{Binding DownloadCommand}"
+              Height="40"
+              Grid.Column="1"
+              Content="下载"
+              VerticalAlignment="Center"
+              Style="{StaticResource MaterialDesignPaperLightButton}" />
+          </Grid>
+          <Expander Header="高级设置">
+            <StackPanel Margin="10">
+              <!-- 保存路径 -->
+              <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,5">
+                <TextBlock VerticalAlignment="Center" Text="保存路径：" Width="70" />
+                <TextBox
+                  Text="{Binding SavePath, UpdateSourceTrigger=PropertyChanged}"
+                  Width="400"
+                  materialDesign:HintAssist.Hint="选择保存目录"
+                  Style="{StaticResource MaterialDesignFilledTextBox}" />
+                <Button
+                  Content="浏览"
+                  Command="{Binding BrowsePathCommand}"
+                  Margin="5,0,0,0"
+                  Style="{StaticResource MaterialDesignPaperLightButton}" />
+              </StackPanel>
+
+              <!-- 视频质量 -->
+              <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,5">
+                <TextBlock VerticalAlignment="Center" Text="视频质量：" Width="70" />
+                <ComboBox
+                  Width="200"
+                  ItemsSource="{Binding QualityOptions}"
+                  SelectedItem="{Binding SelectedQuality}"
+                  Style="{StaticResource MaterialDesignComboBox}" />
+              </StackPanel>
+
+              <!-- 文件命名规则 -->
+              <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,5">
+                <TextBlock VerticalAlignment="Center" Text="视频分p" Width="70" />
+                <StackPanel>
+                  <ComboBox
+                    Width="200"
+                    ItemsSource="{Binding Cids}"
+                    SelectedItem="{Binding Cid}"
+                    Style="{StaticResource MaterialDesignComboBox}" />
+                  <ProgressBar IsIndeterminate="{Binding IsGetCids}"/>
+                </StackPanel>
+              </StackPanel>
+            </StackPanel>
+          </Expander>
+          <ProgressBar IsIndeterminate="{Binding IsDownloading}" />
+          <ScrollViewer VerticalScrollBarVisibility="Hidden" Height="100">
+            <TextBlock 
+              TextWrapping="Wrap"
+              MaxWidth="600"
+              Text="{Binding DownInfo}"/>
+          </ScrollViewer>
+        </StackPanel>
+      </Grid>
+    </Grid>
+  </Border>
+</Window>

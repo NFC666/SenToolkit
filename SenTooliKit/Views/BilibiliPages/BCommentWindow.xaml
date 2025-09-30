@@ -1,0 +1,48 @@
+﻿<Window x:Class="SenTooliKit.Views.BilibiliPages.BCommentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:SenTooliKit.Views.BilibiliPages"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:components="clr-namespace:SenTooliKit.Views.Components"
+        xmlns:vm="clr-namespace:SenTooliKit.ViewModels.BilibiliPages;assembly=SenTooliKit"
+        xmlns:bilibiliPages="clr-namespace:SenTooliKit.ViewModels.BilibiliPages"
+        d:DataContext="{d:DesignInstance bilibiliPages:BCommentWindowViewModel, IsDesignTimeCreatable=True}"
+        xmlns:m = "clr-namespace:SenTooliKit.Common.Models;assembly=SenTooliKit.Common"
+        mc:Ignorable="d"
+        MouseLeftButtonDown="BCommentWindow_OnMouseLeftButtonDown"
+        Title="BCommentWindow" Height="800" Width="1200">
+  <Border
+    BorderBrush="Purple"
+    BorderThickness="1">
+    <Grid Margin="5">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition />
+      </Grid.RowDefinitions>
+      <components:TitleBar />
+      <Grid Grid.Row="1">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Border
+          Width="150"
+          Grid.Column="0">
+          <ListBox
+            SelectedItem="{Binding SelectPage}"
+            ItemsSource="{Binding CommentPages}">
+            <ListBox.ItemTemplate>
+              <DataTemplate>
+                <TextBlock Text="{Binding Title}" />
+              </DataTemplate>
+            </ListBox.ItemTemplate>
+
+          </ListBox>
+        </Border>
+        <ContentControl Grid.Column="1" Content="{Binding CurrentPage}"/>
+      </Grid>
+    </Grid>
+  </Border>
+</Window>
