@@ -4,7 +4,7 @@
 
 - 仓库地址：[`https://github.com/NFC666/SenToolkit`](https://github.com/NFC666/SenToolkit.git)
 
-
+![图片](doc/show.png)
 ### 功能特性
 
 - 哔哩哔哩工具集（BilibiliPages）
@@ -18,6 +18,8 @@
 - Excel 文档导出：`DocumentFormat.OpenXml`
 - DI/宿主：`Microsoft.Extensions.DependencyInjection` 与 `Microsoft.Extensions.Hosting`
 - UI 样式：`MaterialDesignThemes`、`Microsoft.Xaml.Behaviors.Wpf`
+
+
 
 
 ### 技术栈
