@@ -14,7 +14,7 @@ namespace SenTooliKit.Services.Services
         private readonly IBilibiliInfoService _bilibiliInfoService = new BilibiliInfoService();
 
         /// <summary>
-        /// 获取视频的弹幕
+        /// 获取视频的评论
         /// </summary>
         /// <param name="bvid"></param>
         /// <returns></returns>
@@ -32,7 +32,7 @@ namespace SenTooliKit.Services.Services
 
 
         /// <summary>
-        /// 获取视频的所有基本弹幕
+        /// 获取视频的所有基本评论
         /// </summary>
         /// <param name="bvid"></param>
         /// <returns></returns>
@@ -76,14 +76,15 @@ namespace SenTooliKit.Services.Services
                 {
                     // 获取下一页 offset
                     nextOffset =
-                        JsonValueHelper.GetJsonValue<string>(resp, "$.data.cursor.pagination_reply.next_offset");
+                        JsonValueHelper
+                            .GetJsonValue<string>(resp, "$.data.cursor.pagination_reply.next_offset");
                 }
                 catch (Exception)
                 {
                     nextOffset = null;
                 }
 
-                // 随机延迟 1-3 秒
+                // 随机延迟 ，避免风控
                 await Task.Delay(random.Next(500, 1000));
             } while (!string.IsNullOrEmpty(nextOffset));
 

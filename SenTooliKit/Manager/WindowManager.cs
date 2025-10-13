@@ -34,9 +34,7 @@ namespace SenTooliKit.Manager
 
             // 应用无标题栏设置
             ApplyWindowChromeSettings(window);
-
-            // 注册事件：窗口初始化后播放动画
-            window.SourceInitialized += (_, _) => PlayOpenAnimation(window);
+            
 
             window.Closed += (_, _) => _windows.Remove(type);
             _windows[type] = window;

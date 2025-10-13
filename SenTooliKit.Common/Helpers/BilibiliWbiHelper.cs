@@ -17,7 +17,7 @@ namespace SenTooliKit.Common.Helpers
             6, 63, 57, 62, 11, 36, 20, 34, 44, 52
         };
         
-        public static string GetMixinKey(string orig)
+        private static string GetMixinKey(string orig)
         {
             return MixinKeyEncTab.Aggregate("", (s, i) => s + orig[i])[..32];
         }
@@ -35,9 +35,12 @@ namespace SenTooliKit.Common.Helpers
             string mixinKey = GetMixinKey(imgKey + subKey);
             string currTime = DateTimeOffset.Now.ToUnixTimeSeconds().ToString();
             //添加 wts 字段
-            parameters["wts"] = "1758973738";
+            // parameters["wts"] = "1758973738";
+            parameters["wts"] = currTime;
             // 按照 key 重排参数
-            parameters = parameters.OrderBy(p => p.Key).ToDictionary(p => p.Key, p => p.Value);
+            parameters = parameters
+                .OrderBy(p => p.Key)
+                .ToDictionary(p => p.Key, p => p.Value);
             //过滤 value 中的 "!'()*" 字符
             parameters = parameters.ToDictionary(
                 kvp => kvp.Key,
@@ -50,7 +53,6 @@ namespace SenTooliKit.Common.Helpers
             byte[] hashBytes = md5.ComputeHash(Encoding.UTF8.GetBytes(query + mixinKey));
             string wbiSign = BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
             parameters["w_rid"] = wbiSign;
-
             return parameters;
         }
 
